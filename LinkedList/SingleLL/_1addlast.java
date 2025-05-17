@@ -19,7 +19,7 @@ public class _1addlast {
             }
             size++;
         }
-        int sizeLL(){
+        int getSize(){
             return size;
         }
         void printLL(){
@@ -82,19 +82,114 @@ public class _1addlast {
                 return 0;
             }
         }
+        //added addresss
+        void getAddress(){
+            Node temp = head;
+            System.out.println("Address:");
+            while(temp!=null){
+                System.out.print(temp+" ");
+                temp=temp.next;
+            }
+        }
+
+        //add first in LL
+        void addFirst(int val){
+            Node temp = new Node();
+            temp.data=val;
+            temp.next=null;
+            if(size==0){
+                tail=temp;
+            }
+            else{
+                temp.next=head;
+                head=temp;
+            }
+            size++;
+        }
+
+        void addAtIndex(int idx,int val){
+            Node temp=new Node();
+            temp.data=val;
+            temp.next=null;
+            if(idx==0){
+                temp.next=head;
+                head=temp;
+            }
+            else if(idx==size){
+                tail.next=temp;
+                tail=temp;
+            }
+            else if(idx<0 || idx>size){
+                System.out.println("Invalid Index");
+            }
+            else{
+                Node r = head;
+                for(int i=0;i<idx-1;i++){
+                    r = r.next;
+                }
+                temp.next=r.next;
+                r.next=temp; 
+            }
+            size++;
+        }
+
+
+        void removeLast(){
+            if(size==0){
+                System.out.println("List is empty");
+            }
+            else if(size==1){
+                head=tail=null;
+                size=0;
+            }
+            else{
+                Node temp = head;
+                System.out.println(size);
+                for(int i=0;i<size-2;i++){
+                    temp = temp.next;
+                }
+                tail=temp;
+                temp.next=null;
+                size--;
+            }
+            
+        }
     }
     public static void main(String[] args) {
         LinkedList li = new LinkedList();
+        System.out.print("Added  last: ");
         li.addLast(10);
         li.addLast(20);
         li.addLast(30);
         li.addLast(40);
-        // li.deleteFirst();
-        // li.deleteFirst();
         li.printLL();
-        int b = li.getFirst();
-        int l = li.getLast();
-        int c = li.getAt(2);
+
+        System.out.println();
+        li.removeLast();
+        li.printLL();
+
+
+
+
+        // System.out.println("Size:"+li.getSize());
+
+        // System.out.print("Added  First(9): ");
+        // li.addFirst(9);
+        // li.printLL();
+        // System.out.println("Size:"+li.getSize());
+
+        // System.out.println("adding at specific index:");
+        // li.addAtIndex(0, 200);
+        // li.addAtIndex(5, 12);
+        // li.addAtIndex(2, 5);
+        // li.printLL();
+        // li.deleteFirst();
+        // li.deleteFirst();
+        // li.printLL();
+        // int b = li.getFirst();
+        // int l = li.getLast();
+        // int c = li.getAt(2);
+        // li.getAddress();
     }
 
 }
