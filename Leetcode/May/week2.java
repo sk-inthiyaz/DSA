@@ -1,4 +1,7 @@
+
+//week 2 and 3 
 // 08-05-2025 [2105. Watering Plants II]
+// 18-05-2025 [9. Palindrome Number]
 public class week2 {
     //2105. Watering Plants II
     /**
@@ -387,5 +390,67 @@ class Solution {
     }
 }
 
+
+
+/*
+28. Find the Index of the First Occurrence in a String
+Easy
+Topics
+Companies
+Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+ 
+
+Example 1:
+
+Input: haystack = "sadbutsad", needle = "sad"
+Output: 0
+Explanation: "sad" occurs at index 0 and 6.
+The first occurrence is at index 0, so we return 0.
+Example 2:
+
+Input: haystack = "leetcode", needle = "leeto"
+Output: -1
+Explanation: "leeto" did not occur in "leetcode", so we return -1.
+ */
+
+
+
+
+ /*
+9. Palindrome Number
+Given an integer x, return true if x is a palindrome, and false otherwise.
+
+ 
+
+Example 1:
+
+Input: x = 121
+Output: true
+Explanation: 121 reads as 121 from left to right and from right to left.
+Example 2:
+
+Input: x = -121
+Output: false
+Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+  */
+
+  public boolean isPalindrome(int x) {
+        String s = Integer.toString(x);
+        char a[]=s.toCharArray();
+        int l=0;
+        int r=a.length-1,f=0;
+        while(l<r){
+            if(a[l]==a[r]){
+                l++;
+                r--;
+                f=1;
+            }
+            else{
+                return false;
+            }
+        }
+        return true;
+    }
 
 }
