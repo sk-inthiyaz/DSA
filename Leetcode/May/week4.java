@@ -1,9 +1,13 @@
 // Linked List:
 // 206. Reverse Linked List
 // 3550. Smallest Index With Digit Sum Equal to Index
+// 100621. Sum of Largest Prime Substrings[biweekly]
+// 70. Climbing Stairs (26)
+
 
 // import java.lang.classfile.components.ClassPrinter.ListNode;
 
+import  java.util.*;
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -164,31 +168,130 @@ Constraints:
 
 1 <= nums.length <= 100
 0 <= nums[i] <= 1000
- */
-        public static int digitSum(int p,int digit){
-        if(digit==0){
-            System.out.println(p);
-            return p;
+//  */
+//         public static int digitSum(int p,int digit){
+//         if(digit==0){
+//             System.out.println(p);
+//             return p;
+//         }
+//         int n = digit%10;
+//         p = p + n;
+//         n = digit/10;
+//         return digitSum(p,n);
+//     }
+//     public static int smallestIndex(int[] nums) {
+//         int small,smallest=-1;
+//         for(int i=0;i<nums.length;i++){
+//             int sumdigits=digitSum(0,nums[i]);
+//             if(sumdigits==i){
+//                     smallest=i;
+//                     break;
+//             }
+//         }
+//         System.out.println(smallest);
+//         return smallest;
+//     }
+//     public static void main(String[] args) {
+//         int k = smallestIndex(new int[]{1,2,3});
+//     }
+
+
+
+
+//100621. Sum of Largest Prime Substrings
+
+public static boolean  isPrime(long  n){
+    // 1. Handle base cases and trivial non-primes
+        if (n <= 1) {
+            return false; // Numbers less than or equal to 1 are not prime
         }
-        int n = digit%10;
-        p = p + n;
-        n = digit/10;
-        return digitSum(p,n);
-    }
-    public static int smallestIndex(int[] nums) {
-        int small,smallest=-1;
-        for(int i=0;i<nums.length;i++){
-            int sumdigits=digitSum(0,nums[i]);
-            if(sumdigits==i){
-                    smallest=i;
-                    break;
+        if (n == 2 || n == 3) {
+            return true; // 2 and 3 are prime numbers
+        }
+        if (n % 2 == 0 || n % 3 == 0) {
+            return false; // Multiples of 2 or 3 (except 2 and 3 themselves) are not prime
+        }
+
+        // 2. Optimized loop for checking divisibility
+        // We only need to check divisors up to the square root of n.
+        // We can skip multiples of 2 and 3 by checking divisors of the form 6k ± 1.
+        for (long i = 5; i * i <= n; i = i + 6) {
+            if (n % i == 0 || n % (i + 2) == 0) {
+                return false; // n is divisible by i or i+2, so it's not prime
             }
         }
-        System.out.println(smallest);
-        return smallest;
-    }
-    public static void main(String[] args) {
-        int k = smallestIndex(new int[]{1,2,3});
+
+        // 3. If no divisors found, the number is prime
+        return true;
+}
+
+public static  long sumOfLargestPrimes(String s) {
+        ArrayList list = new ArrayList<>();
+        int n = s.length();
+        long num;
+        for(int i=0;i<=n;i++){
+            for(int j=i;j<=n;j++){
+                num = Long.parseLong(s.substring(i,j));
+                if(isPrime(num)){
+                    list.add(num);
+                }
+            } 
+        }
+        Collections.sort(list,Collections.reverseOrder());
+        Set<Long> myHashSet = new HashSet<>(list);
+        List<Long> mylist = new ArrayList<>(myHashSet);
+        long sum = 0;
+        for(int i=0;i<3;i++){
+            sum += mylist.get(i);
+        }
+        System.out.println(sum);
+        return 0;
     }
 
+
+    public static void main(String[] args) {
+    long g = sumOfLargestPrimes("12234");
 }
+
+/*
+// 70. Climbing Stairs (26)
+You are climbing a staircase. It takes n steps to reach the top.
+
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+ 
+
+Example 1:
+
+Input: n = 2
+Output: 2
+Explanation: There are two ways to climb to the top.
+1. 1 step + 1 step
+2. 2 steps
+Example 2:
+
+Input: n = 3
+Output: 3
+Explanation: There are three ways to climb to the top.
+1. 1 step + 1 step + 1 step
+2. 1 step + 2 steps
+3. 2 steps + 1 step
+ */
+public int climbStairs(int n) {
+        if (n <= 2) return n;
+
+        int first = 1;
+        int second = 2;
+        
+        for (int i = 3; i <= n; i++) {
+            int third = first + second;
+            first = second;
+            second = third;
+        }
+        
+        return second;
+    }
+
+
+}
+
