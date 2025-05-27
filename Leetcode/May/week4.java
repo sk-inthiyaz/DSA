@@ -6,8 +6,6 @@
 
 
 // import java.lang.classfile.components.ClassPrinter.ListNode;
-
-import  java.util.*;
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -200,58 +198,58 @@ Constraints:
 
 //100621. Sum of Largest Prime Substrings
 
-public static boolean  isPrime(long  n){
-    // 1. Handle base cases and trivial non-primes
-        if (n <= 1) {
-            return false; // Numbers less than or equal to 1 are not prime
-        }
-        if (n == 2 || n == 3) {
-            return true; // 2 and 3 are prime numbers
-        }
-        if (n % 2 == 0 || n % 3 == 0) {
-            return false; // Multiples of 2 or 3 (except 2 and 3 themselves) are not prime
-        }
+// public static boolean  isPrime(long  n){
+//     // 1. Handle base cases and trivial non-primes
+//         if (n <= 1) {
+//             return false; // Numbers less than or equal to 1 are not prime
+//         }
+//         if (n == 2 || n == 3) {
+//             return true; // 2 and 3 are prime numbers
+//         }
+//         if (n % 2 == 0 || n % 3 == 0) {
+//             return false; // Multiples of 2 or 3 (except 2 and 3 themselves) are not prime
+//         }
 
-        // 2. Optimized loop for checking divisibility
-        // We only need to check divisors up to the square root of n.
-        // We can skip multiples of 2 and 3 by checking divisors of the form 6k ± 1.
-        for (long i = 5; i * i <= n; i = i + 6) {
-            if (n % i == 0 || n % (i + 2) == 0) {
-                return false; // n is divisible by i or i+2, so it's not prime
-            }
-        }
+//         // 2. Optimized loop for checking divisibility
+//         // We only need to check divisors up to the square root of n.
+//         // We can skip multiples of 2 and 3 by checking divisors of the form 6k ± 1.
+//         for (long i = 5; i * i <= n; i = i + 6) {
+//             if (n % i == 0 || n % (i + 2) == 0) {
+//                 return false; // n is divisible by i or i+2, so it's not prime
+//             }
+//         }
 
-        // 3. If no divisors found, the number is prime
-        return true;
-}
+//         // 3. If no divisors found, the number is prime
+//         return true;
+// }
 
-public static  long sumOfLargestPrimes(String s) {
-        ArrayList list = new ArrayList<>();
-        int n = s.length();
-        long num;
-        for(int i=0;i<=n;i++){
-            for(int j=i;j<=n;j++){
-                num = Long.parseLong(s.substring(i,j));
-                if(isPrime(num)){
-                    list.add(num);
-                }
-            } 
-        }
-        Collections.sort(list,Collections.reverseOrder());
-        Set<Long> myHashSet = new HashSet<>(list);
-        List<Long> mylist = new ArrayList<>(myHashSet);
-        long sum = 0;
-        for(int i=0;i<3;i++){
-            sum += mylist.get(i);
-        }
-        System.out.println(sum);
-        return 0;
-    }
+// public static  long sumOfLargestPrimes(String s) {
+//         ArrayList list = new ArrayList<>();
+//         int n = s.length();
+//         long num;
+//         for(int i=0;i<=n;i++){
+//             for(int j=i;j<=n;j++){
+//                 num = Long.parseLong(s.substring(i,j));
+//                 if(isPrime(num)){
+//                     list.add(num);
+//                 }
+//             } 
+//         }
+//         Collections.sort(list,Collections.reverseOrder());
+//         Set<Long> myHashSet = new HashSet<>(list);
+//         List<Long> mylist = new ArrayList<>(myHashSet);
+//         long sum = 0;
+//         for(int i=0;i<3;i++){
+//             sum += mylist.get(i);
+//         }
+//         System.out.println(sum);
+//         return 0;
+//     }
 
 
-    public static void main(String[] args) {
-    long g = sumOfLargestPrimes("12234");
-}
+//     public static void main(String[] args) {
+//     long g = sumOfLargestPrimes("12234");
+// }
 
 /*
 // 70. Climbing Stairs (26)
@@ -277,21 +275,67 @@ Explanation: There are three ways to climb to the top.
 2. 1 step + 2 steps
 3. 2 steps + 1 step
  */
-public int climbStairs(int n) {
-        if (n <= 2) return n;
+// public int climbStairs(int n) {
+//         if (n <= 2) return n;
 
-        int first = 1;
-        int second = 2;
+//         int first = 1;
+//         int second = 2;
         
-        for (int i = 3; i <= n; i++) {
-            int third = first + second;
-            first = second;
-            second = third;
+//         for (int i = 3; i <= n; i++) {
+//             int third = first + second;
+//             first = second;
+//             second = third;
+//         }
+        
+//         return second;
+//     }
+
+
+
+
+
+public  static int nextGreaterElement(int n) {
+        char[] digits = String.valueOf(n).toCharArray();
+        int i = digits.length - 2;
+
+    
+        //Find the first decreasing digit from the right
+        while (i >= 0 && digits[i] >= digits[i + 1]) {
+            i--;
         }
-        
-        return second;
+
+        if (i < 0) return -1; // Already the highest permutation
+
+        // Step 2: Find the digit just larger than digits[i] to the right
+        int j = digits.length - 1;
+        while (digits[j] <= digits[i]) {
+            j--;
+        }
+
+        // Step 3: Swap
+        char temp = digits[i];
+        digits[i] = digits[j];
+        digits[j] = temp;
+
+        // Step 4: Reverse the part after i
+        int left = i + 1, right = digits.length - 1;
+        while (left < right) {
+            temp = digits[left];
+            digits[left] = digits[right];
+            digits[right] = temp;
+            left++;
+            right--;
+        }
+
+        long result = Long.parseLong(new String(digits));
+        return (result <= Integer.MAX_VALUE) ? (int) result : -1;
     }
 
+
+
+    public static void main(String[] args) {
+        int n = nextGreaterElement()
+    }
 
 }
 
