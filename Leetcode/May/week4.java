@@ -3,7 +3,8 @@
 // 3550. Smallest Index With Digit Sum Equal to Index
 // 100621. Sum of Largest Prime Substrings[biweekly]
 // 70. Climbing Stairs (26)
-
+// 556. Next Greater Element III
+// 125. Valid Palindrome
 
 // import java.lang.classfile.components.ClassPrinter.ListNode;
 /**
@@ -294,48 +295,99 @@ Explanation: There are three ways to climb to the top.
 
 
 
-public  static int nextGreaterElement(int n) {
-        char[] digits = String.valueOf(n).toCharArray();
-        int i = digits.length - 2;
+// public  static int nextGreaterElement(int n) {
+//         char[] digits = String.valueOf(n).toCharArray();
+//         int i = digits.length - 2;
 
-    
-        //Find the first decreasing digit from the right
-        while (i >= 0 && digits[i] >= digits[i + 1]) {
-            i--;
+
+
+//         //Find the first decreasing digit from the right
+//         while (i >= 0 && digits[i] >= digits[i + 1]) {
+//             System.out.println(digits[i]+" " +digits[i+1]);
+//             i--;
+//         }
+
+//         if (i < 0) return -1; // Already the highest permutation
+
+//         // Step 2: Find the digit just larger than digits[i] to the right
+//         int j = digits.length - 1;
+//         while (digits[j] <= digits[i]) {
+//             j--;
+//         }
+
+//         // Step 3: Swap
+//         char temp = digits[i];
+//         digits[i] = digits[j];
+//         digits[j] = temp;
+
+//         // Step 4: Reverse the part after i
+//         int left = i + 1, right = digits.length - 1;
+//         while (left < right) {
+//             temp = digits[left];
+//             digits[left] = digits[right];
+//             digits[right] = temp;
+//             left++;
+//             right--;
+//         }
+
+//         long result = Long.parseLong(new String(digits));
+//         return (result <= Integer.MAX_VALUE) ? (int) result : -1;
+//     }
+
+
+
+//     public static void main(String[] args) {
+//         int n = nextGreaterElement(1234);
+//     }
+
+    /*
+     A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+
+Given a string s, return true if it is a palindrome, or false otherwise.
+
+ 
+
+Example 1:
+
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+Example 2:
+
+Input: s = "race a car"
+Output: false
+Explanation: "raceacar" is not a palindrome.
+Example 3:
+
+Input: s = " "
+Output: true
+Explanation: s is an empty string "" after removing non-alphanumeric characters.
+Since an empty string reads the same forward and backward, it is a palindrome.
+     */
+
+
+
+     public static  boolean isPalindrome(String s) {
+        String onlyLetters = s.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+        
+        int l = 0;
+        int r = onlyLetters.length() - 1;
+
+        while (l < r) {
+            if (onlyLetters.charAt(l) != onlyLetters.charAt(r)) {
+                return false;
+            }
+            l++;
+            r--;
         }
 
-        if (i < 0) return -1; // Already the highest permutation
-
-        // Step 2: Find the digit just larger than digits[i] to the right
-        int j = digits.length - 1;
-        while (digits[j] <= digits[i]) {
-            j--;
-        }
-
-        // Step 3: Swap
-        char temp = digits[i];
-        digits[i] = digits[j];
-        digits[j] = temp;
-
-        // Step 4: Reverse the part after i
-        int left = i + 1, right = digits.length - 1;
-        while (left < right) {
-            temp = digits[left];
-            digits[left] = digits[right];
-            digits[right] = temp;
-            left++;
-            right--;
-        }
-
-        long result = Long.parseLong(new String(digits));
-        return (result <= Integer.MAX_VALUE) ? (int) result : -1;
+        return true;
     }
-
-
-
     public static void main(String[] args) {
-        int n = nextGreaterElement()
+        // boolean g = isPalindrome("A man, a plan, a canal: Panama");
+        // boolean g = isPalindrome("race a car");
+        boolean g = isPalindrome("0p");
+        System.out.println(g);
     }
-
 }
 
