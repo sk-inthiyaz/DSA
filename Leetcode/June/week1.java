@@ -1,7 +1,16 @@
 // 876. Middle of the Linked List [01-06-2025]
-
-
+// Weekly context sun - 8:00 AM    ^
+// |->Q1. Partition Array into Two Equal Product Subsets [med]
+// |->Q2. Minimum Absolute Difference in Sliding Submatrix
 // Definition for singly-linked list.
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 class ListNode {
     int val;
     ListNode next;
@@ -52,14 +61,176 @@ public class week1 {
         System.out.println();
     }
 
+    //Q1. Partition Array into Two Equal Product Subsets
+    /*
+    You are given an integer array nums containing distinct positive integers and an integer target.
+
+Determine if you can partition nums into two non-empty disjoint subsets, with each element belonging to exactly one subset, such that the product of the elements in each subset is equal to target.
+
+Return true if such a partition exists and false otherwise.
+
+A subset of an array is a selection of elements of the array.
+ 
+
+Example 1:
+
+Input: nums = [3,1,6,8,4], target = 24
+
+Output: true
+
+Explanation: The subsets [3, 8] and [1, 6, 4] each have a product of 24. Hence, the output is true.
+
+Example 2:
+
+Input: nums = [2,5,3,7], target = 15
+
+Output: false
+
+Explanation: There is no way to partition nums into two non-empty disjoint subsets such that both subsets have a product of 15. Hence, the output is false.
+
+ 
+
+Constraints:
+
+3 <= nums.length <= 12
+1 <= target <= 1015
+1 <= nums[i] <= 100
+All elements of nums are distinct.©leetcode
+    */
+    public static  boolean checkEqualPartitions(int[] nums, long target) {
+            //1,3,4,6,8 t=24
+            //2,3,7,9,10,11,17  t = 34
+            Arrays.sort(nums);
+            int l = 0;
+            int r = nums.length-1;
+            long p =1;
+            p = p*nums[l]*nums[r];
+            while(l<r){
+            if(p>target){
+                System.out.println(false);
+                return false;
+            }
+            else if(p<target){
+                p  = p*nums[l];
+                l++;
+            }
+            else{
+                l++;
+                r--;
+            }
+            }
+            System.out.println(true);
+        return true;
+    }
+
+    //Q2. Minimum Absolute Difference in Sliding Submatrix
+    /*
+    You are given an m x n integer matrix grid and an integer k.
+
+For every contiguous k x k submatrix of grid, compute the minimum absolute difference between any two distinct values within that submatrix.
+
+Return a 2D array ans of size (m - k + 1) x (n - k + 1), where ans[i][j] is the minimum absolute difference in the submatrix whose top-left corner is (i, j) in grid.
+
+Note: If all elements in the submatrix have the same value, the answer will be 0.
+
+A submatrix (x1, y1, x2, y2) is a matrix that is formed by choosing all cells matrix[x][y] where x1 <= x <= x2 and y1 <= y <= y2.
+ 
+
+Example 1:
+
+Input: grid = [[1,8],[3,-2]], k = 2
+
+Output: [[2]]
+
+Explanation:
+
+There is only one possible k x k submatrix: [[1, 8], [3, -2]].
+Distinct values in the submatrix are [1, 8, 3, -2].
+The minimum absolute difference in the submatrix is |1 - 3| = 2. Thus, the answer is [[2]].
+Example 2:
+
+Input: grid = [[3,-1]], k = 1
+
+Output: [[0,0]]
+
+Explanation:
+
+Both k x k submatrix has only one distinct element.
+Thus, the answer is [[0, 0]].
+Example 3:
+
+Input: grid = [[1,-2,3],[2,3,5]], k = 2
+
+Output: [[1,2]]
+
+Explanation:
+
+There are two possible k × k submatrix:
+Starting at (0, 0): [[1, -2], [2, 3]].
+Distinct values in the submatrix are [1, -2, 2, 3].
+The minimum absolute difference in the submatrix is |1 - 2| = 1.
+Starting at (0, 1): [[-2, 3], [3, 5]].
+Distinct values in the submatrix are [-2, 3, 5].
+The minimum absolute difference in the submatrix is |3 - 5| = 2.
+Thus, the answer is [[1, 2]].
+ 
+
+Constraints:
+
+1 <= m == grid.length <= 30
+1 <= n == grid[i].length <= 30
+-105 <= grid[i][j] <= 105
+1 <= k <= min(m, n)©leetcode
+     */
+    public int[][] minAbsDiff(int[][] grid, int k) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] ans = new int[m - k + 1][n - k + 1];
+
+        for (int i = 0; i <= m - k; i++) {
+            for (int j = 0; j <= n - k; j++) {
+                Set<Integer> set = new HashSet<>();
+
+                // Collect all values in the k x k submatrix
+                for (int x = i; x < i + k; x++) {
+                    for (int y = j; y < j + k; y++) {
+                        set.add(grid[x][y]);
+                    }
+                }
+
+                // Convert to list and sort
+                List<Integer> list = new ArrayList<>(set);
+                Collections.sort(list);
+
+                int minDiff = Integer.MAX_VALUE;
+
+                // If all elements are the same
+                if (list.size() <= 1) {
+                    minDiff = 0;
+                } else {
+                    for (int l = 1; l < list.size(); l++) {
+                        minDiff = Math.min(minDiff, Math.abs(list.get(l) - list.get(l - 1)));
+                    }
+                }
+
+                ans[i][j] = minDiff;
+            }
+        }
+
+        return ans;
+    }
+
     public static void main(String[] args) {
-        int[] input = {1, 2, 3, 4, 5, 6}; // Change this array to test other cases
+        // int[] input = {1, 2, 3, 4, 5, 6}; // Change this array to test other cases
 
-        ListNode head = buildList(input);
-        Solution solution = new Solution();
-        ListNode middle = solution.middleNode(head);
+        // ListNode head = buildList(input);
+        // Solution solution = new Solution();
+        // ListNode middle = solution.middleNode(head);
 
-        System.out.print("Output: ");
-        printList(middle);
+        // System.out.print("Output: ");
+        // printList(middle);
+        // boolean g = checkEqualPartitions(new int[]{3,1,6,8,4}, 24);
+        // boolean g = checkEqualPartitions(new int[]{2,5,3,7}, 15);
+        boolean g = checkEqualPartitions(new int[]{3,21,7}, 21);//3,7,21
     }
 }
