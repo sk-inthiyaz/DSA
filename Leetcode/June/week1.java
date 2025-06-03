@@ -18,6 +18,7 @@ class ListNode {
     ListNode next;
 
     ListNode() {}
+
     ListNode(int val) { this.val = val; }
     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
 }
@@ -63,7 +64,7 @@ public class week1 {
         System.out.println();
     }
 
-    //Q1. Partition Array into Two Equal Product Subsets
+//Q1. Partition Array into Two Equal Product Subsets
     /*
     You are given an integer array nums containing distinct positive integers and an integer target.
 
