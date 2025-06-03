@@ -4,7 +4,7 @@
 // |->Q2. Minimum Absolute Difference in Sliding Submatrix
 // 141. Linked List Cycle [02-06-2025]
 // 234. Palindrome Linked List[03-06-2025]
-// Definition for singly-linked list.
+//Linked list  should be covered
 
 import java.util.ArrayList;
 import java.util.Arrays;
