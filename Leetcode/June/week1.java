@@ -18,6 +18,7 @@ class ListNode {
     ListNode next;
 
     ListNode() {}
+
     ListNode(int val) { this.val = val; }
     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
 }
@@ -63,7 +64,7 @@ public class week1 {
         System.out.println();
     }
 
-    //Q1. Partition Array into Two Equal Product Subsets
+//Q1. Partition Array into Two Equal Product Subsets
     /*
     You are given an integer array nums containing distinct positive integers and an integer target.
 
@@ -85,15 +86,9 @@ Explanation: The subsets [3, 8] and [1, 6, 4] each have a product of 24. Hence, 
 Example 2:
 
 Input: nums = [2,5,3,7], target = 15
-
 Output: false
-
 Explanation: There is no way to partition nums into two non-empty disjoint subsets such that both subsets have a product of 15. Hence, the output is false.
-
- 
-
 Constraints:
-
 3 <= nums.length <= 12
 1 <= target <= 1015
 1 <= nums[i] <= 100
