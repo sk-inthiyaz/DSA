@@ -3,6 +3,7 @@
 // |->Q1. Partition Array into Two Equal Product Subsets [med]
 // |->Q2. Minimum Absolute Difference in Sliding Submatrix
 // 141. Linked List Cycle [02-06-2025]
+// 234. Palindrome Linked List[03-06-2025]
 // Definition for singly-linked list.
 
 import java.util.ArrayList;
@@ -263,6 +264,7 @@ Follow up: Can you solve it using O(1) (i.e. constant) memory?
  */
 
 
+
     public boolean hasCycle(ListNode head) {
         ListNode slow = head;
         ListNode fast = head;
@@ -273,6 +275,69 @@ Follow up: Can you solve it using O(1) (i.e. constant) memory?
         }
         return false;
     }
+// 234. Palindrome Linked List
+/*
+Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+
+ 
+
+Example 1:
+
+
+Input: head = [1,2,2,1]
+Output: true
+Example 2:
+
+
+Input: head = [1,2]
+Output: false
+ 
+
+Constraints:
+
+The number of nodes in the list is in the range [1, 105].
+0 <= Node.val <= 9
+ 
+
+Follow up: Could you do it in O(n) time and O(1) space?
+
+ */
+public boolean isPalindrome(ListNode head) {
+        if(head==null || head.next==null) return true;
+        //1.find middle
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast!=null && fast.next!=null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        //2.Reverse Second half
+        ListNode secondHalf = reverseList(slow);
+
+        // Step 3: Compare both halves
+        ListNode firstHalf = head;
+        while (secondHalf != null) {
+            if (firstHalf.val != secondHalf.val) return false;
+            firstHalf = firstHalf.next;
+            secondHalf = secondHalf.next;
+        }
+
+        return true;
+
+    }
+    private ListNode reverseList(ListNode head){
+        ListNode prev = null;
+        while(head!=null){
+            ListNode nexttemp = head.next;
+            head.next = prev;
+            prev = head;
+            head = nexttemp;
+        }
+        return prev;
+    }
+
+
     public static void main(String[] args) {
         // int[] input = {1, 2, 3, 4, 5, 6}; // Change this array to test other cases
 
