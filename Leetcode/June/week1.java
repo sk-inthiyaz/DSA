@@ -4,6 +4,7 @@
 // |->Q2. Minimum Absolute Difference in Sliding Submatrix
 // 141. Linked List Cycle [02-06-2025]
 // 234. Palindrome Linked List[03-06-2025]
+// 83. Remove Duplicates from Sorted List [04-06-2025]
 //Linked list  should be covered
 
 import java.util.ArrayList;
@@ -332,6 +333,55 @@ public boolean isPalindrome(ListNode head) {
         return prev;
     }
 
+
+
+//83. Remove Duplicates from Sorted List
+/**
+Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+
+ 
+
+Example 1:
+
+
+Input: head = [1,1,2]
+Output: [1,2]
+Example 2:
+
+
+Input: head = [1,1,2,3,3]
+Output: [1,2,3]
+ 
+ */
+
+public ListNode deleteDuplicates(ListNode head) {
+        // if(head==null) return null;
+        // HashSet<Integer> set = new HashSet<>();
+        // ListNode current = head;
+        // set.add(current.val);
+        // while(current.next!=null){
+        //     if(set.contains(current.next.val)){
+        //         set.add(current.val);
+        //         current.next = current.next.next;
+        //     }
+        //     else{
+        //         set.add(current.next.val);
+        //         current = current.next;
+        //     }
+        // }
+        // return head;
+        ListNode temp = head;
+        while (temp != null && temp.next != null)
+        {
+            if (temp.next.val==temp.val)
+            {
+                temp.next=temp.next.next;
+                continue;
+            }
+            temp=temp.next;
+        }
+        return head;
+    }
 
     public static void main(String[] args) {
         // int[] input = {1, 2, 3, 4, 5, 6}; // Change this array to test other cases
