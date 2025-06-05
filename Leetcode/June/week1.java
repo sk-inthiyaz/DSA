@@ -10,6 +10,7 @@
 // Find length of Loop (Greek for greeks)       ^
 // 328. Odd Even Linked List        
 // 19. Remove Nth Node From End of List 
+// 326. Power of Three
 //Linked list  should be covered
 
 import java.util.ArrayList;
@@ -602,6 +603,42 @@ public ListNode removeNthFromEnd(ListNode head, int n) {
         return dummy.next;
     }
 
+
+/*
+326. Power of Three
+Solved
+Easy
+Topics
+premium lock icon
+Companies
+Given an integer n, return true if it is a power of three. Otherwise, return false.
+
+An integer n is a power of three, if there exists an integer x such that n == 3x.
+
+ 
+
+Example 1:
+
+Input: n = 27
+Output: true
+Explanation: 27 = 33
+Example 2:
+
+Input: n = 0
+Output: false
+Explanation: There is no x where 3x = 0.
+Example 3:
+
+Input: n = -1
+Output: false
+Explanation: There is no x where 3x = (-1).
+ 
+ */
+    public boolean isPowerOfThree(int n) {
+        if(n==1) return true;
+        if(n<=0 || n%3!=0) return false;
+        return isPowerOfThree(n/3);
+    }
     public static void main(String[] args) {
         // int[] input = {1, 2, 3, 4, 5, 6}; // Change this array to test other cases
 
