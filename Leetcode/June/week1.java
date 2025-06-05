@@ -5,9 +5,11 @@
 // 141. Linked List Cycle [02-06-2025]
 // 234. Palindrome Linked List[03-06-2025]
 // 83. Remove Duplicates from Sorted List [04-06-2025]
-// 142. Linked List Cycle II                [05-06-2025]
+// date  = [05-06-2025]
+// 142. Linked List Cycle II                
 // Find length of Loop (Greek for greeks)       ^
 // 328. Odd Even Linked List        
+// 19. Remove Nth Node From End of List 
 //Linked list  should be covered
 
 import java.util.ArrayList;
@@ -548,6 +550,57 @@ public ListNode oddEvenList(ListNode head) {
         return head;
     }
 
+//19. Remove Nth Node From End of List
+/*
+Medium
+Topics
+premium lock icon
+Companies
+Hint
+Given the head of a linked list, remove the nth node from the end of the list and return its head.
+
+ 
+
+Example 1:
+
+
+Input: head = [1,2,3,4,5], n = 2
+Output: [1,2,3,5]
+Example 2:
+
+Input: head = [1], n = 1
+Output: []
+Example 3:
+
+Input: head = [1,2], n = 1
+Output: [1]
+ 
+
+Constraints:
+
+The number of nodes in the list is sz.
+1 <= sz <= 30
+0 <= Node.val <= 100
+1 <= n <= sz
+ 
+
+Follow up: Could you do this in one pass?
+ */
+public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode firstptr = dummy ;
+        ListNode secondptr = dummy ;
+        for(int i=0;i<n;i++){
+            secondptr = secondptr.next;
+        }
+        while(secondptr.next!=null){
+            firstptr = firstptr.next;
+            secondptr = secondptr.next;
+        }
+        firstptr.next = firstptr.next.next;
+        return dummy.next;
+    }
 
     public static void main(String[] args) {
         // int[] input = {1, 2, 3, 4, 5, 6}; // Change this array to test other cases
