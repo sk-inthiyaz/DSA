@@ -849,7 +849,7 @@ Constraints:
 1 <= m, n <= 4 * 104
  */
 
-    public int[][] construct2DArray(int[] original, int m, int n) {
+    public  static int[][] construct2DArray(int[] original, int m, int n) {
         if (original.length != m * n) {
             return new int[0][0]; // Return empty 2D array if sizes don’t match
         }
@@ -858,7 +858,7 @@ Constraints:
         for (int i = 0; i < original.length; i++) {
             result[i / n][i % n] = original[i];
         }
-
+        System.out.println(result);
         return result;
     }
 
@@ -874,6 +874,7 @@ Constraints:
         // printList(middle);
         // boolean g = checkEqualPartitions(new int[]{3,1,6,8,4}, 24);
         // boolean g = checkEqualPartitions(new int[]{2,5,3,7}, 15);
-        boolean g = checkEqualPartitions(new int[]{3,21,7}, 21);//3,7,21
+        // boolean g = checkEqualPartitions(new int[]{3,21,7}, 21);//3,7,21
+        int[][] f = construct2DArray(new int[] {1,2,3,4,5,6}, 2, 3);
     }
 }
