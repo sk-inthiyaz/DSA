@@ -853,12 +853,19 @@ Constraints:
         if (original.length != m * n) {
             return new int[0][0]; // Return empty 2D array if sizes don’t match
         }
-
+        System.out.println("Positions:");
         int[][] result = new int[m][n];
         for (int i = 0; i < original.length; i++) {
             result[i / n][i % n] = original[i];
+            System.out.println(i/n+" "+i%n + "input array in index "+ original[i]);
         }
-        System.out.println(result);
+
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                System.out.print(result[i][j]+" ");
+            }
+            System.out.println();
+        }
         return result;
     }
 
@@ -875,6 +882,6 @@ Constraints:
         // boolean g = checkEqualPartitions(new int[]{3,1,6,8,4}, 24);
         // boolean g = checkEqualPartitions(new int[]{2,5,3,7}, 15);
         // boolean g = checkEqualPartitions(new int[]{3,21,7}, 21);//3,7,21
-        int[][] f = construct2DArray(new int[] {1,2,3,4,5,6}, 2, 3);
+        int[][] f = construct2DArray(new int[] {1,2,3,4,5,6}, 2, 3);//2 r 3 c
     }
 }
