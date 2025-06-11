@@ -1,5 +1,6 @@
 //148. Sort List [09-06-2025]
 //382. Linked List Random Node [10-06-25]
+//20. Valid Parentheses [11-06-2025]
 import java.util.*;
 
 public class week2 {
@@ -112,6 +113,72 @@ Could you solve this efficiently without using extra space?
         return arr.get((int)(Math.random() * arr.size()));
     }
 
+/*
+20. Valid Parentheses
+Solved
+Easy
+Topics
+premium lock icon
+Companies
+Hint
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Every close bracket has a corresponding open bracket of the same type.
+ 
+
+Example 1:
+
+Input: s = "()"
+
+Output: true
+
+Example 2:
+
+Input: s = "()[]{}"
+
+Output: true
+
+Example 3:
+
+Input: s = "(]"
+
+Output: false
+
+Example 4:
+
+Input: s = "([])"
+
+Output: true
+ */
+    public boolean isValid(String s) {
+        /**
+        Input: s = "()[]{}"
+Output: true
+Input: s = "([])"
+Output: true
+         */
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (c == '(' || c == '{' || c == '[') {
+                stack.push(c);
+            } else {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                char top = stack.pop();
+                if (!((c == ')' && top == '(') || 
+                      (c == '}' && top == '{') || 
+                      (c == ']' && top == '['))) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
 
     public static void main(String[] args) {
         // Example: Linked List = [4, 2, 1, 3]
