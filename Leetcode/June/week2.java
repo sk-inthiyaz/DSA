@@ -1,6 +1,7 @@
 //148. Sort List [09-06-2025]
 //382. Linked List Random Node [10-06-25]
 //20. Valid Parentheses [11-06-2025]
+//1614. Maximum Nesting Depth of the Parentheses
 import java.util.*;
 
 public class week2 {
@@ -178,6 +179,71 @@ Output: true
             }
         }
         return stack.isEmpty();
+    }
+
+/*
+1614. Maximum Nesting Depth of the Parentheses
+Solved
+Easy
+Topics
+premium lock icon
+Companies
+Hint
+Given a valid parentheses string s, return the nesting depth of s. The nesting depth is the maximum number of nested parentheses.
+
+ 
+
+Example 1:
+
+Input: s = "(1+(2*3)+((8)/4))+1"
+
+Output: 3
+
+Explanation:
+
+Digit 8 is inside of 3 nested parentheses in the string.
+
+Example 2:
+
+Input: s = "(1)+((2))+(((3)))"
+
+Output: 3
+
+Explanation:
+
+Digit 3 is inside of 3 nested parentheses in the string.
+
+Example 3:
+
+Input: s = "()(())((()()))"
+
+Output: 3
+
+ 
+
+Constraints:
+
+1 <= s.length <= 100
+s consists of digits 0-9 and characters '+', '-', '*', '/', '(', and ')'.
+It is guaranteed that parentheses expression s is a VPS.
+
+ */
+
+public int maxDepth(String s) {
+        int count = 0;
+        int max=0;
+        for(char c:s.toCharArray()){
+            if(c=='('){
+                count++;
+                if(count>max){
+                    max=count;
+                }
+            }
+            else if(c==')'){
+                count--;
+            }
+        }
+        return max;     
     }
 
     public static void main(String[] args) {
