@@ -2,7 +2,8 @@
 //382. Linked List Random Node [10-06-25]
 //20. Valid Parentheses [11-06-2025]
 //1614. Maximum Nesting Depth of the Parentheses[12-06-25]
-//3423. Maximum Difference Between Adjacent Elements in a Circular Array
+//3423. Maximum Difference Between Adjacent Elements in a Circular Array[12-06-25]
+//232. Implement Queue using Stacks[13-06-25]
 import java.util.*;
 
 public class week2 {
@@ -303,6 +304,88 @@ Constraints:
         if(d>max) max=d;
         return max;
     }
+
+    /*
+232. Implement Queue using Stacks
+Solved
+Easy
+Topics
+premium lock icon
+Companies
+Implement a first in first out (FIFO) queue using only two stacks. The implemented queue should support all the functions of a normal queue (push, peek, pop, and empty).
+
+Implement the MyQueue class:
+
+void push(int x) Pushes element x to the back of the queue.
+int pop() Removes the element from the front of the queue and returns it.
+int peek() Returns the element at the front of the queue.
+boolean empty() Returns true if the queue is empty, false otherwise.
+Notes:
+
+You must use only standard operations of a stack, which means only push to top, peek/pop from top, size, and is empty operations are valid.
+Depending on your language, the stack may not be supported natively. You may simulate a stack using a list or deque (double-ended queue) as long as you use only a stack's standard operations.
+ 
+
+Example 1:
+
+Input
+["MyQueue", "push", "push", "peek", "pop", "empty"]
+[[], [1], [2], [], [], []]
+Output
+[null, null, null, 1, 1, false]
+
+Explanation
+MyQueue myQueue = new MyQueue();
+myQueue.push(1); // queue is: [1]
+myQueue.push(2); // queue is: [1, 2] (leftmost is front of the queue)
+myQueue.peek(); // return 1
+myQueue.pop(); // return 1, queue is [2]
+myQueue.empty(); // return false
+     */
+
+    class MyQueue {
+    //paile 2 stak Define kare 
+    private Stack<Integer>first;
+    private Stack<Integer>second;
+    public MyQueue() {
+        //2 stacks are created 
+        first = new Stack<>();
+        second = new Stack<>();
+    }
+    
+    public void push(int x) {
+        //first stack me push karrey
+        first.push(x);
+    }
+    
+    public int pop() {
+        while(!first.isEmpty()){
+            second.push(first.pop());
+        }
+        int removed = second.pop();
+        while(!second.isEmpty()){
+            first.push(second.pop());
+        }
+        return removed;
+    }
+    
+    public int peek() {
+        while(!first.isEmpty()){
+            second.push(first.pop());
+        }
+        int peeked = second.peek();
+        while(!second.isEmpty()){
+            first.push(second.pop());
+        }
+
+        return peeked;
+    }
+    
+    public boolean empty() {
+        return first.isEmpty();
+    }
+}
+
     public static void main(String[] args) {
         // Example: Linked List = [4, 2, 1, 3]
         ListNode head = new ListNode(4);
