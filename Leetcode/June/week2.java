@@ -8,6 +8,7 @@
 //84. Largest Rectangle in Histogram[14-06-25]
 //921. Minimum Add to Make Parentheses Valid[14-06-25]
 //2566. Maximum Difference by Remapping a Digit[14-06-25]
+//Q1. Generate Tag for Video Caption
 import java.util.*;
 
 public class week2 {
@@ -642,6 +643,91 @@ Constraints:
 
     }
 
+
+    /*
+     Q1. Generate Tag for Video Caption
+Solved
+Easy
+3 pt.
+You are given a string caption representing the caption for a video.
+
+The following actions must be performed in order to generate a valid tag for the video:
+
+Combine all words in the string into a single camelCase string prefixed with '#'. A camelCase string is one where the first letter of all words except the first one is capitalized. All characters after the first character in each word must be lowercase.
+
+Remove all characters that are not an English letter, except the first '#'.
+
+Truncate the result to a maximum of 100 characters.
+
+Return the tag after performing the actions on caption.
+
+ 
+
+Example 1:
+
+Input: caption = "Leetcode daily streak achieved"
+
+Output: "#leetcodeDailyStreakAchieved"
+
+Explanation:
+
+The first letter for all words except "leetcode" should be capitalized.
+
+Example 2:
+
+Input: caption = "can I Go There"
+
+Output: "#canIGoThere"
+
+Explanation:
+
+The first letter for all words except "can" should be capitalized.
+
+Example 3:
+
+Input: caption = "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+
+Output: "#hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
+
+Explanation:
+
+Since the first word has length 101, we need to truncate the last two letters from the word.
+
+ 
+     */
+    public String generateTag(String caption) {
+         // Step 1: Remove non-letter characters except spaces
+        StringBuilder clean = new StringBuilder();
+        for (int i = 0; i < caption.length(); i++) {
+            char ch = caption.charAt(i);
+            if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || ch == ' ') {
+                clean.append(ch);
+            }
+        }
+
+        // Step 2: Split into words
+        String[] words = clean.toString().trim().split("\\s+");
+        StringBuilder tag = new StringBuilder("#");
+
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (word.isEmpty()) continue;
+
+            if (i == 0) {
+                tag.append(word.toLowerCase());
+            } else {
+                tag.append(Character.toUpperCase(word.charAt(0)));
+                tag.append(word.substring(1).toLowerCase());
+            }
+        }
+
+        // Step 3: Truncate to max 100 characters
+        if (tag.length() > 100) {
+            return tag.substring(0, 100);
+        }
+
+        return tag.toString();
+    }
     public static void main(String[] args) {
         // Example: Linked List = [4, 2, 1, 3]
         ListNode head = new ListNode(4);
