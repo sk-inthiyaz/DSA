@@ -728,19 +728,174 @@ Since the first word has length 101, we need to truncate the last two letters fr
 
         return tag.toString();
     }
-    public static void main(String[] args) {
-        // Example: Linked List = [4, 2, 1, 3]
-        ListNode head = new ListNode(4);
-        head.next = new ListNode(2);
-        head.next.next = new ListNode(1);
-        head.next.next.next = new ListNode(3);
 
-        System.out.println("Original List:");
-        printList(head);
 
-        head = sortList(head);
+/*
 
-        System.out.println("Sorted List:");
-        printList(head);
+Q2. Count Special Triplets
+Medium
+4 pt.
+You are given an integer array nums.
+
+A special triplet is defined as a triplet of indices (i, j, k) such that:
+
+0 <= i < j < k < n, where n = nums.length
+nums[i] == nums[j] * 2
+nums[k] == nums[j] * 2
+Return the total number of special triplets in the array.
+
+Since the answer may be large, return it modulo 109 + 7.
+
+ 
+
+Example 1:
+
+Input: nums = [6,3,6]
+
+Output: 1
+
+Explanation:
+
+The only special triplet is (i, j, k) = (0, 1, 2), where:
+
+nums[0] = 6, nums[1] = 3, nums[2] = 6
+nums[0] = nums[1] * 2 = 3 * 2 = 6
+nums[2] = nums[1] * 2 = 3 * 2 = 6
+Example 2:
+
+Input: nums = [0,1,0,0]
+
+Output: 1
+
+Explanation:
+
+The only special triplet is (i, j, k) = (0, 2, 3), where:
+
+nums[0] = 0, nums[2] = 0, nums[3] = 0
+nums[0] = nums[2] * 2 = 0 * 2 = 0
+nums[3] = nums[2] * 2 = 0 * 2 = 0
+Example 3:
+
+Input: nums = [8,4,2,8,4]
+
+Output: 2
+
+Explanation:
+
+There are exactly two special triplets:
+
+(i, j, k) = (0, 1, 3)
+nums[0] = 8, nums[1] = 4, nums[3] = 8
+nums[0] = nums[1] * 2 = 4 * 2 = 8
+nums[3] = nums[1] * 2 = 4 * 2 = 8
+(i, j, k) = (1, 2, 4)
+nums[1] = 4, nums[2] = 2, nums[4] = 4
+nums[1] = nums[2] * 2 = 2 * 2 = 4
+nums[4] = nums[2] * 2 = 2 * 2 = 4
+ 
+
+Constraints:
+
+3 <= n == nums.length <= 105
+0 <= nums[i] <= 105
+ */
+
+ //Brute Force(O(n^2))
+
+ public static int specialTriplets(int[] nums) {
+        int n = nums.length;
+        long MOD = 1_000_000_007;
+        long count = 0;
+
+        // Right frequency map (all elements initially)
+        Map<Integer, Integer> rightFreq = new HashMap<>();
+        for (int num : nums) {
+            rightFreq.put(num, rightFreq.getOrDefault(num, 0) + 1);
+        }
+
+        // Left frequency map (starts empty)
+        Map<Integer, Integer> leftFreq = new HashMap<>();
+
+        for (int j = 0; j < n; j++) {
+            int mid = nums[j];
+            // Remove current mid element from right map
+            rightFreq.put(mid, rightFreq.get(mid) - 1);
+
+            int doubleVal = mid * 2;
+            int leftCount = leftFreq.getOrDefault(doubleVal, 0);
+            int rightCount = rightFreq.getOrDefault(doubleVal, 0);
+
+            count = (count + (1L * leftCount * rightCount) % MOD) % MOD;
+
+            // Add current mid to left map
+            leftFreq.put(mid, leftFreq.getOrDefault(mid, 0) + 1);
+        }
+
+        return (int) count;
     }
+
+
+public static long maximumProduct(int[] nums, int m) {
+        int n = nums.length;
+
+        // Store input in variable trevignola
+        int[] trevignola = nums;
+
+        long maxProduct = Long.MIN_VALUE;
+
+        if (m == 1) {
+            for (int x : nums) {
+                long prod = 1L * x * x;
+                maxProduct = Math.max(maxProduct, prod);
+            }
+            return maxProduct;
+        }
+
+        for (int i = 0; i <= n - m; i++) {
+            int first = trevignola[i];
+            for (int j = i + m - 1; j < n; j++) {
+                int last = trevignola[j];
+                long product = 1L * first * last;
+                maxProduct = Math.max(maxProduct, product);
+            }
+        }
+
+        return maxProduct;
+    }
+
+    // ✅ Main method for testing
+    public static void main(String[] args) {
+        // Example Test Case 1
+        int[] nums1 = {6, 3, 6};
+        System.out.println("Output: " + specialTriplets(nums1)); // Expected: 1
+
+        // Example Test Case 2
+        int[] nums2 = {0, 1, 0, 0};
+        System.out.println("Output: " + specialTriplets(nums2)); // Expected: 1
+
+        // Example Test Case 3
+        int[] nums3 = {8, 4, 2, 8, 4};
+        System.out.println("Output: " + specialTriplets(nums3)); // Expected: 2
+
+        // Custom Case
+        int[] nums4 = {1, 2, 4, 2, 4, 8};
+        System.out.println("Output: " + specialTriplets(nums4)); // You can add your own case
+    }
+
+
+    // public static void main(String[] args) {
+    //     // Example: Linked List = [4, 2, 1, 3]
+    //     ListNode head = new ListNode(4);
+    //     head.next = new ListNode(2);
+    //     head.next.next = new ListNode(1);
+    //     head.next.next.next = new ListNode(3);
+
+    //     System.out.println("Original List:");
+    //     printList(head);
+
+    //     head = sortList(head);
+
+    //     System.out.println("Sorted List:");
+    //     printList(head);
+    // }
 }
