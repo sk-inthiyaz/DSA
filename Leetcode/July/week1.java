@@ -147,22 +147,73 @@ Either x is not zero or n > 0.
     public  static  double myPow(double x, int n) {
         if(n<0){
             n=-n;
-            System.out.println(n);
             x=1/x;
-            System.out.println(x);
         }
         double pow = 1;
         while(n!=0){
-            if((n&1)!=0){
-                pow *= x;
+            System.out.println(n);
+            if((n&1)!=0){//odd
+                pow = pow * x;
             }
-            x *= x;
+            x = x * x;
+            // System.out.println(n>>>=1);
             n>>>=1;
         }
         return pow;
     }
 
     public static void main(String[] args) {
-        double x = myPow(2.00000, 10);
+        double x = myPow(7 , 11);
+    }
+
+    /*
+    507. Perfect Number
+Solved
+Easy
+Topics
+premium lock icon
+Companies
+A perfect number is a positive integer that is equal to the sum of its positive divisors, excluding the number itself. A divisor of an integer x is an integer that can divide x evenly.
+
+Given an integer n, return true if n is a perfect number, otherwise return false.
+
+ 
+
+Example 1:
+
+Input: num = 28
+Output: true
+Explanation: 28 = 1 + 2 + 4 + 7 + 14
+1, 2, 4, 7, and 14 are all divisors of 28.
+Example 2:
+
+Input: num = 7
+Output: false
+ 
+
+Constraints:
+
+1 <= num <= 1
+     */
+
+
+    public boolean checkPerfectNumber(int num) {
+        if (num <= 1) return false;
+
+        int sum = 1; 
+
+        // Check divisors from 2 up to sqrt(num)
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0) {
+                sum += i;
+
+                // Avoid adding square root twice (for perfect squares)
+                if (i != num / i) {
+                    sum += num / i;
+                }
+            }
+        }
+
+        return sum == num;
     }
 }
