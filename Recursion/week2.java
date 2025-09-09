@@ -4,41 +4,41 @@
 // 14-04-2025 print stair paths
 // 15-04-2025 printMazePaths(pending)
 // 16-04-2025 Permutation
-
+import java.util.*;
 public class week2{
     //Day1(GetMazePaths)
     //sr-source row 
     //sc-source coloumn
     //dr-destination row 
     //dc-destination coloumn
-    // public static ArrayList<String>getMazePaths(int sr,int sc,int dr,int dc){
-    //     if(sr==dr && sc==dc){
-    //         ArrayList<String>bres = new ArrayList<>();
-    //         bres.add(" ");
-    //         return bres;
-    //     }
-    //     ArrayList<String> hpaths = new ArrayList<>();
-    //     ArrayList<String> vpaths = new ArrayList<>();
-    //     if(sc<dc){
-    //         hpaths = getMazePaths(sr, sc+1, dr, dc);
-    //     }
-    //     if(sr<dr){
-    //         vpaths = getMazePaths(sr+1, sc, dr, dc);
-    //     }
-    //     ArrayList<String> paths = new ArrayList<>();
+    public static ArrayList<String>getMazePaths(int sr,int sc,int dr,int dc){
+        if(sr==dr && sc==dc){
+            ArrayList<String>bres = new ArrayList<>();
+            bres.add(" ");
+            return bres;
+        }
+        ArrayList<String> hpaths = new ArrayList<>();
+        ArrayList<String> vpaths = new ArrayList<>();
+        if(sc<dc){
+            hpaths = getMazePaths(sr, sc+1, dr, dc);
+        }
+        if(sr<dr){
+            vpaths = getMazePaths(sr+1, sc, dr, dc);
+        }
+        ArrayList<String> paths = new ArrayList<>();
 
-    //     for(String hpath:hpaths){
-    //         paths.add("h"+hpath);
-    //     }
-    //     for(String vpath:vpaths){
-    //         paths.add("v"+vpath);
-    //     }
-    //     return paths;
-    // }
-    // public static void main(String[] args) {
-    //     ArrayList<String> result = getMazePaths(1, 1, 3, 3);
-    //     System.out.println(result);
-    // }
+        for(String hpath:hpaths){
+            paths.add("h"+hpath);
+        }
+        for(String vpath:vpaths){
+            paths.add("v"+vpath);
+        }
+        return paths;
+    }
+    public static void main(String[] args) {
+        ArrayList<String> result = getMazePaths(1, 1, 3, 3);
+        System.out.println(result);
+    }
 
 
     // Day2
@@ -131,22 +131,22 @@ public class week2{
     cab
     cba
      */
-    public  static  void Permutation(String ques,String asf){
-        if(ques.length()==0){
-            System.out.println(asf);
-            return;
-        }
-        for(int i=0;i<ques.length();i++){
-            char ch = ques.charAt(i);
-            String qlpart = ques.substring(0, i);
-            String qrpart = ques.substring(i+1);
-            String roq = qlpart+qrpart;
-            Permutation(roq, asf+ch);
-        }
-    }
-    public static void main(String[] args) {
-        Permutation("abc", "");
-    }
+    // public  static  void Permutation(String ques,String asf){
+    //     if(ques.length()==0){
+    //         System.out.println(asf);
+    //         return;
+    //     }
+    //     for(int i=0;i<ques.length();i++){
+    //         char ch = ques.charAt(i);
+    //         String qlpart = ques.substring(0, i);
+    //         String qrpart = ques.substring(i+1);
+    //         String roq = qlpart+qrpart;
+    //         Permutation(roq, asf+ch);
+    //     }
+    // }
+    // public static void main(String[] args) {
+    //     Permutation("abc", "");
+    // }
 
 
 }
