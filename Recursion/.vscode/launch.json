@@ -1,0 +1,56 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Binary_search",
+            "request": "launch",
+            "mainClass": "Binary_search",
+            "projectName": "Recursion_266fe586"
+        },
+        {
+            "type": "java",
+            "name": "Day1",
+            "request": "launch",
+            "mainClass": "Day1",
+            "projectName": "Recursion_266fe586"
+        },
+        {
+            "type": "java",
+            "name": "Day2",
+            "request": "launch",
+            "mainClass": "Day2",
+            "projectName": "Recursion_266fe586"
+        },
+        {
+            "type": "java",
+            "name": "Manssir",
+            "request": "launch",
+            "mainClass": "Manssir",
+            "projectName": "Recursion_266fe586"
+        },
+        {
+            "type": "java",
+            "name": "week2",
+            "request": "launch",
+            "mainClass": "week2",
+            "projectName": "Recursion_266fe586"
+        }
+    ]
+}

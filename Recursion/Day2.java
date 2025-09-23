@@ -3,13 +3,7 @@
 //5['Key_Pad_Combination']
 // package Recursion;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
-import javax.xml.validation.Schema;
-
-// import String.lenlast;
-
+import java.util.*;
 public class Day2 {
     // public static void pzz(int n){
     //     if(n==0){
@@ -22,8 +16,9 @@ public class Day2 {
     //     System.out.println("Post:"+n);
     // }
     // public static void main(String[] args) {
-    //     pzz(5);
+    //     pzz(3);
     // }
+
 
     //1Q)Tower of honie
     // public static void toh(int n,int t1id,int t2id,int t3id){
@@ -98,6 +93,7 @@ public class Day2 {
     //     System.out.println(FirstIndexOccurence(arr, 0, 8));
     // }
 
+
     // public static int LastIndexOccurence(int arr[],int idx,int element){
     //     // if(idx==-1){
     //     //     return -1;
@@ -170,41 +166,43 @@ public class Day2 {
     //Subsequence
     // Input:abc
     //output:[, c, b, bc, a, ac, ab, abc]
-    // public static ArrayList<String> gss(String str){
-    //     System.out.println("String:"+str);
-    //     if(str.length()==0){
-    //         System.out.println("(Since size is 0 Base Case Array created: "+str.length());
-    //         ArrayList<String>bres = new ArrayList<>();
-    //         bres.add("");
-    //         System.out.println("BaseCase Array:"+bres);
-    //         return bres;
-    //     }
-    //     System.out.println("Size of the String:"+str.length());
-    //     char ch = str.charAt(0);
-    //     String ros = str.substring(1);
-    //     System.out.println("First Index:"+ch+" Other Index:"+ros);
-    //     System.out.println("Created a new ArrayList(rres) [] and doing recursive....");
-    //     ArrayList<String> rres = gss(ros);
-    //     ArrayList<String> mres = new ArrayList<>();
-    //     System.out.println("mres ArrayList created[]");
-    //     for(String rstr:rres){
-    //         mres.add(""+rstr);
-    //         System.out.println("Adding to mres():"+rstr);
-    //     }
-    //     for(String rstr:rres){
-    //         mres.add(ch+rstr);
-    //         System.out.println("Adding to mres("+ch+"):"+ch+rstr);
-    //     }
-    //     System.out.println(mres);
-    //     System.out.println("Returning mres...");
-    //     return mres;
-    // }
 
-    // public static void main(String[] args) {
-    //     ArrayList<String> result=gss("abc");
-    //     System.out.println(result);
-    // }
+    public static ArrayList<String> gss(String str){
+        System.out.println("String:"+str);
+        if(str.length()==0){
+            System.out.println("(Since size is 0 Base Case Array created: "+str.length());
+            ArrayList<String>bres = new ArrayList<>();
+            bres.add("");
+            System.out.println("BaseCase Array:"+bres);
+            return bres;
+        }
+        System.out.println("Size of the String:"+str.length());
+        char ch = str.charAt(0);
+        String ros = str.substring(1);
+        System.out.println("First Index:"+ch+" Other Index:"+ros);
+        System.out.println("Created a new ArrayList(rres) [] and doing recursive....");
+        ArrayList<String> rres = gss(ros);
+        ArrayList<String> mres = new ArrayList<>();
+        System.out.println("mres ArrayList created[]");
+        for(String rstr:rres){
+            mres.add(""+rstr);
+            System.out.println("Adding to mres():"+rstr);
+        }
+        for(String rstr:rres){
+            mres.add(ch+rstr);
+            System.out.println("Adding to mres("+ch+"):"+ch+rstr);
+        }
+        System.out.println(mres);
+        System.out.println("Returning mres...");
+        return mres;
+    }
 
+    public static void main(String[] args) {
+        ArrayList<String> result=gss("abc");
+        System.out.println(result);
+    }
+
+    
     //Day5:
     //Quetion:Key_Pad_Combination (KPC)
     /*
@@ -224,35 +222,30 @@ public class Day2 {
 
     Complete the body of the getKPC function - without changing the signature - to get the list of all words that could be produced by the keys in str. Use sample input and output to get an idea about the output."
      */
-    static String[] codes = {".;","abc","def","ghi","jkl","mno","pqrs","tu","vwx","yz"};
-    public static ArrayList<String> getKPC(String str){//573 73 3
-        if(str.length()==0){
-            ArrayList<String> bres = new ArrayList<>();
-            bres.add("");
-            return bres;
-        }
-        char ch = str.charAt(0);//5 7 3
-        String ros = str.substring(1);//73 3 ""
-        ArrayList<String> rres = getKPC(ros);
-        int a = ch - '0';
-        String codeforch = codes[a];
-        ArrayList<String> mres = new ArrayList<>();
-        for(int i=0;i<codeforch.length();i++){
-            char chcode = codeforch.charAt(i);
-            for(String rstr:rres){
-                mres.add(chcode+ rstr);
-            }
-            
-           
-        }
-        return mres;//73 3 ""
-    }
-    public static void main(String[] args) {
-        String str = "573";
-        ArrayList<String> words = getKPC(str);
-        System.out.println(words);
-    }
-
-
-
+    // static String[] codes = {".;","abc","def","ghi","jkl","mno","pqrs","tu","vwx","yz"};
+    // public static ArrayList<String> getKPC(String str){//573 73 3
+    //     if(str.length()==0){
+    //         ArrayList<String> bres = new ArrayList<>();
+    //         bres.add("");
+    //         return bres;
+    //     }
+    //     char ch = str.charAt(0);//5 7 3
+    //     String ros = str.substring(1);//73 3 ""
+    //     ArrayList<String> rres = getKPC(ros);
+    //     int a = ch - '0';
+    //     String codeforch = codes[a];
+    //     ArrayList<String> mres = new ArrayList<>();
+    //     for(int i=0;i<codeforch.length();i++){
+    //         char chcode = codeforch.charAt(i);
+    //         for(String rstr:rres){
+    //             mres.add(chcode+ rstr);
+    //         }
+    //     }
+    //     return mres;//73 3 ""
+    // }
+    // public static void main(String[] args) {
+    //     String str = "573";
+    //     ArrayList<String> words = getKPC(str);
+    //     System.out.println(words);
+    // }
 }

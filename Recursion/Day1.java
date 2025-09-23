@@ -9,12 +9,14 @@ public class Day1{
     // }
 
 
-    // public static void printDecresing(int n){
-    //     if(n>=0){
-    //         System.out.println(n);
-    //         printDecresing(n-1);
-    //     }
-    // }
+
+    public static void printDecresing(int n){
+        if(n>=0){
+            System.out.println(n);
+            printDecresing(n-1);
+        }
+    }
+
 
     // public static void printIncresing(int n){
     //     if(n==0){
@@ -24,14 +26,14 @@ public class Day1{
     //     System.out.println(n);
     // }
     
-    // public static void printDecresingIncresing(int n){
-    //     if(n==0){
-    //         return;
-    //     }
-    //     System.out.println(n);
-    //     printDecresingIncresing(n-1);
-    //     System.out.println(n);
-    // }
+    public static void printDecresingIncresing(int n){
+        if(n==0){
+            return;
+        }
+        System.out.println(n);
+        printDecresingIncresing(n-1);
+        System.out.println(n);
+    }
 
     // public static int fact(int n){
     //     if(n==0){
