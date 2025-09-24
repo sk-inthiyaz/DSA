@@ -17,7 +17,7 @@ public static char[]  reverse(char arr[],int l,int r){
     }
     
     public static void main (String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);x
         String s = sc.next();
         char arr[] = s.toCharArray();
         char[] sb = reverse(arr,0,arr.length-1);
