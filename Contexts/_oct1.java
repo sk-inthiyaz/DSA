@@ -1,5 +1,8 @@
 // package Contexts;
 /**
+https://leetcode.com/contest/biweekly-contest-167/problems/longest-fibonacci-subarray/
+https://leetcode.com/contest/biweekly-contest-167/problems/design-exam-scores-tracker/
+https://leetcode.com/contest/biweekly-contest-167/problems/maximum-partition-factor/
  * 1)
 To create a char array list and all chars to the arralist at a time 
 2)
@@ -10,7 +13,7 @@ int num = ch - 'a' + 1;
 
  /*2.
   * 
-Q2. Longest Fibonacci Subarray
+Q2. Longest Fibonacci Subarray  
 Medium
 4 pt.
 You are given an array of positive integers nums.

@@ -17,7 +17,7 @@ public class selections {
         for(int i=0;i<arr.length;i++){
             int last = arr.length-i-1;
             int maxIndex= maxi(arr,0,last);
-            swap(arr,maxIndex,last);
+            swap(arr,maxIndex,last);    
         }
     }
     public static void main(String[] args) {

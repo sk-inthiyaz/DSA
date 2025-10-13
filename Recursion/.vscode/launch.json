@@ -5,6 +5,27 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Q3",
+            "request": "launch",
+            "mainClass": "Q3",
+            "projectName": "Recursion_266fe586"
+        },
+        {
+            "type": "java",
+            "name": "successfulPairs",
+            "request": "launch",
+            "mainClass": "streak.successfulPairs",
+            "projectName": "Recursion_266fe586"
+        },
+        {
+            "type": "java",
+            "name": "mergeSort",
+            "request": "launch",
+            "mainClass": "mergeSort",
+            "projectName": "Recursion_266fe586"
+        },
+        {
             "name": "Python Debugger: Current File",
             "type": "debugpy",
             "request": "launch",

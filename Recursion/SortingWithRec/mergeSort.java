@@ -3,10 +3,12 @@ import java.util.Arrays;
 public class mergeSort {
     static int[] mergeSort(int[] arr){
         if(arr.length==1){
+            System.out.println("1");
             return arr;
         }
         int mid = arr.length/2;
         int[] left = mergeSort(Arrays.copyOfRange(arr, 0, mid));
+        System.out.println(Arrays.toString(left));
         int[] right = mergeSort(Arrays.copyOfRange(arr, mid,arr.length));
         return merge(left,right);
     }
