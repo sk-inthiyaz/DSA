@@ -16,7 +16,6 @@ class Solution {
 }
  */
 class GroupAnagram{
-
     public static void main(String[] args) {
         // int[] arr = {5,20,4,3,4,4,5,5};//5
         int[] arr = {1,2,3,3,4,5,4,5,5,5};//3
@@ -26,7 +25,7 @@ class GroupAnagram{
         int smax = Integer.MIN_VALUE;
         int tmax = Integer.MIN_VALUE;
         for(int i=1;i<arr.length;i++){
-            if(max<arr[i]){
+            if(max<arr[i]){            
                 tmax = smax;
                 smax = max;
                 max=arr[i];    

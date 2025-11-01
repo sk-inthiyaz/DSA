@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 class BasicBinaryTree {
     public BasicBinaryTree() {
+        
     }
     
     private static class Node {
@@ -43,7 +44,7 @@ class BasicBinaryTree {
             insert(scanner, node.right);
         }
     }
-    
+     
     // Display the tree in a structured manner
     public void display() {
         if (root == null) {
@@ -120,8 +121,8 @@ class BasicBinaryTree {
         
         tree.populate(scanner);
         
-        System.out.println("\n=== Hierarchical Tree View ===");
-        tree.display();
+        // System.out.println("\n=== Hierarchical Tree View ===");
+        // tree.display();
         
         System.out.println("\n=== Rotated Tree View (90° clockwise) ===");
         tree.displayTree();
