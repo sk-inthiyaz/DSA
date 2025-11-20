@@ -15,7 +15,7 @@ class Solution {
     }
 }
  */
-class GroupAnagram{
+class GroupAnagram{ 
     public static void main(String[] args) {
         // int[] arr = {5,20,4,3,4,4,5,5};//5
         int[] arr = {1,2,3,3,4,5,4,5,5,5};//3
