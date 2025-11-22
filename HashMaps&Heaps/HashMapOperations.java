@@ -1,7 +1,5 @@
 
 import java.util.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class HashMapOperations {
     public static void main(String[] args) {
