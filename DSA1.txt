@@ -1,0 +1,20 @@
+//1.To remove a element from the Hashmap while in loop 
+This is incorrect:
+for(char c:ptr.toCharArray()){
+    for(char ch:hm.keySet()){
+        if(c!=ch){
+            hm.remove(ch);
+        }
+    }
+}
+This is correct:
+for (char c : ptr.toCharArray()) {
+    Iterator<Character> it = hm.keySet().iterator();
+    while (it.hasNext()) {
+        char ch = it.next();
+        if (c != ch) {
+            it.remove();
+        }
+    }
+}
+// ...existing code...

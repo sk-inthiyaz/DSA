@@ -26,6 +26,7 @@ class fuc {
     public static void main(String[] args) {
     // Test Case 1
     String s1 = "leetcode";
+    // int g = Integer.MIN_VALUE
     int result1 = firstUniqChar(s1);
     System.out.println("Input: s = \"" + s1 + "\"");
     System.out.println("Output: " + result1);
