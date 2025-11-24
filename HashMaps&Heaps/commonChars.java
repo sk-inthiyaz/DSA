@@ -23,31 +23,73 @@ import java.util.*;
 
 public class commonChars {
     //fill count array 
-    private void fca(String s,int[] f){
-        for(char ch:s.toCharArray()){
-            f[ch-'a']++;
+    // private static void fca(String s,int[] f){
+    //     for(char ch:s.toCharArray()){
+    //         f[ch-'a']++;
+    //     }
+    // }
+    // public static  List<String> commonChars(String[] words) {
+    //     List<String> result = new ArrayList<>();
+    //     int size = words.length;
+    //     int[] freq = new int[26];
+    //     fca(words[0],freq);
+    //     for(int i=1;i<words.length;i++){
+    //         int[] temp = new int[26];
+    //         fca(words[i],temp);
+    //         for(int j=0;j<26;j++){
+    //             freq[j] = Math.min(freq[j],temp[j]);
+    //         }
+    //     }
+    //     for(int  i=0;i<26;i++){
+    //         if(freq[i]>0){
+    //             for(int j=0;j<freq[i];j++){
+    //                 result.add(String.valueOf((char)(i+'a')));
+    //             }
+    //         }
+    //     }
+    //     return result; 
+    // }
+
+
+
+    public static void fca(String word,int[] freq){
+        for(int i=0;i<word.length();i++){
+            char ch = word.charAt(i);
+            freq[ch-'a']++;
         }
     }
-    public List<String> commonChars(String[] words) {
+
+    public static List<String> commonChars(String[] words){
         List<String> result = new ArrayList<>();
-        int size = words.length;
-        int[] freq = new int[26];
+        int freq[] = new int[26];
         fca(words[0],freq);
         for(int i=1;i<words.length;i++){
-            int[] temp = new int[26];
+            int  temp[] = new int[26];
             fca(words[i],temp);
-            for(int j=0;j<26;j++){
+            for(int  j=0;j<26;j++){
                 freq[j] = Math.min(freq[j],temp[j]);
             }
         }
-        for(int  i=0;i<26;i++){
+        for(int i=0;i<26;i++){
+
             if(freq[i]>0){
-                for(int j=0;j<freq[j];j++){
-                    result.add(String.valueOf((char)(i+'a')));
+                for(int j=0;i<freq[i];j++){
+                    result.add(String.valueOf((char)i+'a'));
                 }
             }
         }
         return result;
-        
+
     }
+
+    
+    public static void main(String[] args) {
+        List<String> li = new ArrayList<>();
+        String words[] = new String[]{"bella","label","roller"};
+        li = commonChars(words);
+        for(String s:li){
+            System.out.print(s+" ");
+        }
+
+        }
 }
