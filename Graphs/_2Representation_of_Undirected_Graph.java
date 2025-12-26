@@ -14,6 +14,7 @@ public class _2Representation_of_Undirected_Graph {
         for(int[] it:edges){
             int u = it[0];
             int v = it[1];
+            
             mat.get(u).set(v,1);
             //since the graph is undirected graph
             mat.get(v).set(u, 1);
